@@ -1,0 +1,219 @@
+
+#  Vue知识点##
+   -  Vue渐进式的JavaScript框架 轻量级  高效    响应式(修改数据层视图层也会改变---反之)
+   -  MVVM 框架
+   -  M-model   V-view  VM-viewmodel vm实例对象，把数据和视图绑定在一起      
+   -  组件化 组件系统是 Vue 的另一个重要概念 
+   -  允许我们使用小型、独立和通常可复用的组件构建大型应用 
+   -  核心功能  允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统
+
+   -  Vue.js 使用了基于 HTML 的模板语法  允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据
+      Vue 将模板编译成虚拟 DOM 渲染函数
+      结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少-
+
+   *代码解读*
+   -  el属性  document.querySelector(el);
+   -  el:"##app" 或者  $mount("##app")来挂在根元素
+
+##  Vue 常用指令
+   -  v-on(缩写 @) v-bind(缩写 :)  v-model
+   -  v-for v-if v-else v-show   
+   -  v-text v-html 
+   
+   ### v-model修饰符
+   -  v-model 的修饰符 
+   -  lazy input 变为 change 延迟触发 
+   -  trim  去除首尾空格
+   -  number  用户的输入值转为数值类型
+   
+   -  text 和 textarea 元素使用 value 属性和 input 事件
+   -  checkbox 和 radio 使用 checked 属性和 change 事件
+   -  select 字段将 value 作为 prop 并将 change 作为事件
+
+
+##  v-if / v-show 的区别
+   -  template 包裹的空元素 只能包裹一个元素    没有任何效果
+   -  v-if   条件渲染 指令的表达式返回为真才会真正的渲染
+   -  v-else 必须 与它最近的 v-if 匹配 
+
+   -  v-show   指令通过 display 来控制显示和隐藏
+   -  带有 v-show的元素 会始终渲染到DOM  只是简单的样式切换
+   
+   *v-if有更高的切换开销  在切换条件很少改变的情况下  推荐使用 v-if*
+   *v-show 有更高的初始渲染开销  需要频繁的切换的情况下 推荐使用 v-show*
+
+   -  v-if 与 v-for 一起使用 (不推荐)
+      如果一定要用   v-for 比 v-if 有更高的优先级     v-if写在 v-for(循环) 的外面
+
+##  Vue属性
+   *data*
+   -  用来初始化数据 简单的数据
+
+   *写函数方法 methods:{}*
+   -  可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例
+
+   *计算属性 computed:{}*
+   -  用于任何复杂的逻辑
+   -  依赖其他值的改变而改变  
+   -  有缓存,只有依赖的某个值发生改变才会重新计算求值
+   
+   *拆分写法*
+   -  setter 用于取值
+
+   -  getter 监听计算属性的值主动改变
+
+
+   *侦听属性 watch:{}* (修改数据触发监听,从而请求ajax)
+   -  监听某些数据需要随着其他的数据的变化而变化
+   -  监听变量变化
+   -  [deep:true] 深度监听,默认只能监听到数组对象的第一层
+
+##  动画animation ？？？ 录频04-21
+##  Class 与 Style 绑定 (录频04-20/文档)
+ *class*
+ *style*
+
+
+##  Vue四个生命周期和八个钩子函数
+   -  beforeCreate(在实例化初始化后，实例创建之前)  created(实例创建之后)  
+   -  beforeMount(实例载入之前)   mounted(实例载入之后) ---在服务器端渲染期间不被调用
+   -  beforeUpdate(数据更新之前)  updated(数据更新之后)
+   -  beforeDestroy(数据删除之前) destroyed(数据删除之后)  
+
+## Vuex(单向数据流  流state--->组件view--->发送一个actions--->修改state)
+   -  实现全局组件的数据管理(实现数据交互和通信,组件通信)
+   -  实现组件的异步数据缓存(像localStorage)
+   -  它采用集中式存储管理应用的所有组件的状态(把所有的数据存储到一个大的对象State,数据响应式来监听数据改变)
+   -  state所有组件的状态对象
+   -  getter 附加属性,就是对state及逆行优化 派生(过滤筛选)
+   -  mutations   同步,非常类似于事件
+   -  actions  异步,提交mutations，不是直接变更状态
+   - (修改state 同步:写一个mutations,然后去提交一个mations   异步:先写mutations,再在actions提交,然后去dispatch发送actions)
+
+   #### 辅助函数
+      -  mapState mapGetters  mapActions  mapMutations
+
+##  数组方法
+   -  变异数组和非变异数组
+   -  变异数组，改变原数组(vue对其进行了包裹)
+      -  push,pop,shift,unshift,splice,sort,reverse
+
+   -  非变异数组，不改变原数组
+      -  map,reduce ,forEach,filter ,find,some ,every,reduce ,concat ,slice
+
+
+ *[v-for] 遍历数组和对象*
+   -  数组(item,index)
+   -  对象(value,key,index)
+
+##  数据类型 
+   -  基本数据类型  String Number Boolean null undefined  (不可变对象 深拷贝)
+   -  引用数据类型  对象 数组     (可变对象,浅拷贝 ) 
+   -  修改基本数据类型会触发视图更新    修改引用数据类型不会触发视图更新  
+
+
+##  深浅拷贝
+   -  深拷贝拷贝指针和内存地址
+   -  浅拷贝只拷贝指针指向，不会新建内存地址
+
+##  过滤器 - filters
+   -  Vue.filter 全局过滤器    filters 局部过滤器 
+   -  Vue.js 允许你自定义过滤器，可被用于一些常见的文本格式化
+   -  过滤器可以用在两个地方：双花括号插值和 v-bind 表达式后面 | 过滤器 
+   -  例：// 时间格式化 
+        Vue.filter("dateFormat",(value,str)=>{
+            if(!value) return "";
+            str = str || "-";
+            value = new Date(value);
+            var year = value.getFullYear();
+            var month = value.getMonth()+1;
+            var day = value.getDate();
+            var hour = value.getHours();
+            var min = value.getMinutes();
+            var sec = value.getSeconds();
+            return `${year}${str}${month}${str}${day} ${hour}:${min}:${sec}`
+        });
+
+## 自定义指令 (文档)
+   -  全局定义  Vue.directive(name,{钩子函数}) 
+   -  局部定义  directives
+   -  v-自定义指令使用,指令定义的时候是驼峰命名 使用的时候就把大写字母加 -改小写
+
+## axios / fetch 
+
+## 组件 component
+
+## Vue的组件通信
+   -  父传子   (props,refs)
+   -  子传父   (自定义事件,$parent,逆向props)
+   -  兄弟组件 (bus空的vue实例,父组件做中间人模式)
+
+## 组件切换
+
+## 组件分发(插槽)
+   -  具名插槽 
+      ```插槽
+         <template v-slot:name>
+            <slot>初始内容</slot>
+         </template>
+      ```
+
+
+## 路由
+   *路由作用构建单页面应用 single-page-appliaction (SPA)*
+   -  1.定义路由组件
+   -  2.定义路由，每一个路由映射一个组件
+   -  3.创建路由实例对象
+   -  4.挂在路由 router 到根实例
+   -  5.写路由出口
+
+   ### 路由传参
+      -  $route   路由信息属性对象
+      -  $router  路由实例化对象
+      - 
+         /user/?id=2021 (问号拼接表示查询参数用$route.query取 search ?id=2021  query id=2021)
+         /user/:id   (拼接的是必传参数 $route.params 取)
+         /user/:id?  (加了?表示未知的参数，可传可不传)
+
+   ### 路由嵌套
+      - 在父路由写一个children属性，里面写子路由映射
+      - 子路由出口写在父路由定义的组件
+
+   ### 路由守卫
+      - *全局守卫*
+      -  全局前置守卫 router.beforeEach(to,from,next)
+      -  全局后置守卫 router.afterEach
+      -  *路由独享守卫*
+      -  beforeEnter 进入当前路由之前触发
+      -  *路由组件内的守卫*
+      -  beforeRouteEnter
+      -  beforeRouteUpdate
+      -  beforeRouteLeave 
+
+##  动画的使用
+   1 引入动画库
+   2     <transition name="one">
+            <div  class="box">
+                动画 优雅
+            </div>
+        </transition>
+
+   3    .one-enter-active{
+            animation: bounceInUp 1.5s;
+        }
+        .one-leave-active{
+            animation: bounceOutDown 1.5s;
+        }
+
+
+## 错点
+   ### 异步问题
+   -  vue异步请求数据后从虚拟dom渲染到真实dom需要时间，而swiper插件实例化swiper是瞬间的，所以出现实例化失败，轮播图无法使用
+      -  解决方法是: *5.0_swiper_mv异步问题*
+            1.延迟器延迟实例化       
+            2.全局的Vue.nextTick()/局部的this.$nextTick()在下次DOM更新循环结束之后执行延迟回调,await回调
+
+##  忘记知识
+   *二阶段*
+   -  声明式  直接在 html  书写    a
+   -  编程式  直接在 javascript 书写  location.href
