@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直居中_table-cell</title>
+    <!-- 自身宽高不能是百分比,父级要有固定宽高 -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent {
+            width: 600px;
+            height: 600px;
+            background-color: cadetblue;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        display: table-cell
+    </div>
+
+
+</body>
+
+</html>

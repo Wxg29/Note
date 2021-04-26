@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直居中_定位 + 位移</title>
+    <!-- 可以不需要宽高 由自身内容撑开-->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent {
+            width: 600px;
+            height: 600px;
+            background-color: cornflowerblue;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .children {
+            width: 200px;
+            height: 200px;
+            background-color: darkgray;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* 位移自身宽高的一半 */
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="children"></div>
+    </div>
+
+</body>
+
+</html>

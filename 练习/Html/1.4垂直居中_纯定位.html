@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直居中_纯定位</title>
+    <!-- 需要有宽高，可以不知道具体 -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent {
+            width: 600px;
+            height: 600px;
+            background-color: cornflowerblue;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .children {
+            width: 200px;
+            height: 200px;
+            background-color: darkgray;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="children"></div>
+    </div>
+
+</body>
+
+</html>
