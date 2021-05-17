@@ -11,6 +11,8 @@
       Vue 将模板编译成虚拟 DOM 渲染函数
       结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少-
 
+   -  虚拟dom --- 存储在内存中用来描述dom的数据称为虚拟dom
+
    *代码解读*
    -  el属性  document.querySelector(el);
    -  el:"##app" 或者  $mount("##app")来挂在根元素

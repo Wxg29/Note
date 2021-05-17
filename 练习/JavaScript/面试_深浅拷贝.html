@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj = {
+        a: 100,
+        b: [10, 20, 30],
+        c: {
+            x: 10
+        },
+        d: /^\d+$/
+    };
+
+    // let obj2 = {};
+
+    //  浅克隆1
+    // for (let key in obj) {
+    //     if (!obj.hasOwnProperty(key)) break; //flase不是私有属性   true私有属性
+    //     obj2[key] = obj[key]
+    // }
+    // 浅克隆2
+    // obj2 = {
+    //     ...obj
+    // }
+
+    // 浅克隆3
+    // Object.assign()
+
+
+    //深克隆1 --- 弊端：函数，正则，等无法转换
+    // obj2 = JSON.parse(JSON.stringify(obj));
+
+    //不直接创建空的对象    目的：克隆的结果保持相同的所属类
+    //let newObj = new obj.constructor
+
+    //深克隆2 --- 递归
+    function deepClone(obj) {
+
+        //过滤特殊情况
+        if (obj === null) return null;
+        if (typeof obj !== "object") return obj;
+        if (obj instanceof RegExp) { //instanceof才能检测正则
+            return new RegExp(obj);
+        };
+        if (obj instanceof Date) {
+            return new Date(obj);
+
+        };
+        let newObj = new obj.constructor;
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                console.log(deepClone(obj[key]));
+                newObj[key] = deepClone(obj[key]);
+            }
+        };
+        return newObj;
+    }
+
+    let obj2 = deepClone(obj)
+    // console.log(obj, obj2);
+    // console.log(obj2 === obj);
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /***************************练习2***************************/
+
+    // var a; // a等于什么值  这个条件成立
+    // if (a == 1 && a == 2 && a == 3) {
+    //     console.log(1);
+    // };
+
+    /****方法一***/
+    //让调自己的toString,进行隐式转换
+    //两个等号会进行隐式转换  会自动去调用对象a里面的 toString方法
+    // a = {
+    //     i: 0,
+    //     toString() {
+    //         return ++this.i;
+    //     }
+    // };
+    // if (a == 1 && a == 2 && a == 3) {
+    //     console.log("条件成立");
+    // };
+
+
+
+    /*方法2 利用数据劫持 Object.defineProperty*/
+    // var i = 0;
+    // Object.defineProperty(window, 'a', {
+    //     get() { //获取值
+    //         return ++i;
+    //     }
+    // })
+
+    // if (a == 1 && a == 2 && a == 3) {
+    //     console.log("条件成立");
+    // };
+
+    /*方法3*/
+    var a = [1, 2, 3]
+    a.toString = a.shift();
+    if (a == 1 && a == 2 && a == 3) {
+        console.log("条件成立");
+    };
+    /*
+        toString , valueOf  类型转换的方法
+        对象==字符串 作比较  把对象toString()变为字符串  [10] == "10"
+        null == undefind  两个等号相等  三个等号就不相等了
+        NaN == NaN  不相等
+        剩下的都转换为数字      例如："1" == true   
+    */
+</script>
+
+</html>

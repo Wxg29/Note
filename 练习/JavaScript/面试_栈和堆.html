@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>栈和堆</title>
+</head>
+
+<body>
+    <img src="../../images/栈和堆.png" alt="">
+</body>
+<script>
+    /*****************example1*******************/
+    // let a = {},
+    //     b = "0",
+    //     c = 0;
+    // a[b] = "wg";
+    // a[c] = "rc"
+    // console.log(a[b]); //rc
+    /*
+        a[b] : b 是一个变量  === a["0"] = "wg"
+        a[c] : c 是一个变量  === a[0] = "rc"
+        在对象中属性都是字符串 而且 数字属性名 === 字符串属性名
+        所以 a["0"]  === a[0] ---> a[b] ="rc"   "wg"被覆盖
+    */
+
+
+
+    /*****************example2*******************/
+    // let a = {},
+    //     b = Symbol("1"),
+    //     c = Symbol("1");
+    // a[b] = "wg";
+    // a[c] = "rc"
+    // console.log(a[b]); //wg
+    /*
+        symbol 创建唯一的值
+        Symbol("1") === Symbol("1")  false
+        b !== c
+        所以  a[b] !== a[c]
+
+    */
+
+
+
+    /*****************example3*******************/
+    let a = {},
+        b = {
+            n: "1"
+        },
+        c = {
+            m: "2"
+        };
+    a[b] = "wg";
+    a[c] = "rc"
+    console.log(a[b]); //rc
+    /*
+    a[b] === [object Object]:"wg"
+    a[c] === [object Object]:"rc"
+    所以 a[b] 会被 a[c]覆盖
+    最后结果就是 rc
+
+    当一个对象做为属性时 属性就是字符串的[object Object]
+    */
+</script>
+
+</html>

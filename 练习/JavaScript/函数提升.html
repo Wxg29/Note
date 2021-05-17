@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(myName);
+    var myName = "小格"
+    //undefind
+    /*
+        因为变量提升只提升了声明的变量  并没有提升赋值  === var myName
+    */
+
+    myAge = 18
+    console.log(myAge); //18
+    var myAge
+
+    name() //wuge
+    function name() {
+        console.log("wuge");
+    }
+    /*
+        声明式函数会和var一样提升到代码的顶部
+    */
+
+    sex() //sex is not a function
+    var sex = function () {
+        console.log("nan");
+    }
+    /*
+        函数表达式  var sex会提升到顶部  函数体不会所以会报错  
+    */
+</script>
+
+</html>
